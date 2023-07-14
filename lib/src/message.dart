@@ -12,16 +12,7 @@ import 'messages/video_message.dart';
 import 'user.dart' show User;
 
 /// All possible message types.
-enum MessageType {
-  audio,
-  custom,
-  file,
-  image,
-  system,
-  text,
-  unsupported,
-  video
-}
+enum MessageType { audio, custom, file, image, system, text, unsupported, video }
 
 /// All possible statuses message can have.
 enum Status { delivered, error, seen, sending, sent }
@@ -32,6 +23,7 @@ enum Status { delivered, error, seen, sending, sent }
 abstract class Message extends Equatable {
   const Message({
     required this.author,
+    required this.receiver,
     this.createdAt,
     required this.id,
     this.metadata,
@@ -75,6 +67,9 @@ abstract class Message extends Equatable {
   /// User who sent this message.
   final User author;
 
+  /// User who receive this message.
+  final User receiver;
+
   /// Created message timestamp, in ms.
   final int? createdAt;
 
@@ -108,6 +103,7 @@ abstract class Message extends Equatable {
   /// Creates a copy of the message with an updated data.
   Message copyWith({
     User? author,
+    User? receiver,
     int? createdAt,
     String? id,
     Map<String, dynamic>? metadata,
