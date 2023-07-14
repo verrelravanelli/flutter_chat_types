@@ -8,6 +8,7 @@ part of 'audio_message.dart';
 
 AudioMessage _$AudioMessageFromJson(Map<String, dynamic> json) => AudioMessage(
       author: User.fromJson(json['author'] as Map<String, dynamic>),
+      receiver: User.fromJson(json['receiver'] as Map<String, dynamic>),
       createdAt: json['createdAt'] as int?,
       duration: Duration(microseconds: json['duration'] as int),
       id: json['id'] as String,
@@ -15,9 +16,8 @@ AudioMessage _$AudioMessageFromJson(Map<String, dynamic> json) => AudioMessage(
       mimeType: json['mimeType'] as String?,
       name: json['name'] as String,
       remoteId: json['remoteId'] as String?,
-      repliedMessage: json['repliedMessage'] == null
-          ? null
-          : Message.fromJson(json['repliedMessage'] as Map<String, dynamic>),
+      repliedMessage:
+          json['repliedMessage'] == null ? null : Message.fromJson(json['repliedMessage'] as Map<String, dynamic>),
       roomId: json['roomId'] as String?,
       showStatus: json['showStatus'] as bool?,
       size: json['size'] as num,
@@ -25,9 +25,7 @@ AudioMessage _$AudioMessageFromJson(Map<String, dynamic> json) => AudioMessage(
       type: $enumDecodeNullable(_$MessageTypeEnumMap, json['type']),
       updatedAt: json['updatedAt'] as int?,
       uri: json['uri'] as String,
-      waveForm: (json['waveForm'] as List<dynamic>?)
-          ?.map((e) => (e as num).toDouble())
-          .toList(),
+      waveForm: (json['waveForm'] as List<dynamic>?)?.map((e) => (e as num).toDouble()).toList(),
     );
 
 Map<String, dynamic> _$AudioMessageToJson(AudioMessage instance) {

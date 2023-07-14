@@ -6,16 +6,15 @@ part of 'unsupported_message.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UnsupportedMessage _$UnsupportedMessageFromJson(Map<String, dynamic> json) =>
-    UnsupportedMessage(
+UnsupportedMessage _$UnsupportedMessageFromJson(Map<String, dynamic> json) => UnsupportedMessage(
       author: User.fromJson(json['author'] as Map<String, dynamic>),
+      receiver: User.fromJson(json['receiver'] as Map<String, dynamic>),
       createdAt: json['createdAt'] as int?,
       id: json['id'] as String,
       metadata: json['metadata'] as Map<String, dynamic>?,
       remoteId: json['remoteId'] as String?,
-      repliedMessage: json['repliedMessage'] == null
-          ? null
-          : Message.fromJson(json['repliedMessage'] as Map<String, dynamic>),
+      repliedMessage:
+          json['repliedMessage'] == null ? null : Message.fromJson(json['repliedMessage'] as Map<String, dynamic>),
       roomId: json['roomId'] as String?,
       showStatus: json['showStatus'] as bool?,
       status: $enumDecodeNullable(_$StatusEnumMap, json['status']),

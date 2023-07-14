@@ -14,6 +14,7 @@ abstract class SystemMessage extends Message {
   /// Creates a custom message.
   const SystemMessage._({
     super.author = const User(id: 'system'),
+    super.receiver = const User(id: 'system'),
     super.createdAt,
     required super.id,
     super.metadata,
@@ -43,8 +44,7 @@ abstract class SystemMessage extends Message {
   }) = _SystemMessage;
 
   /// Creates a custom message from a map (decoded JSON).
-  factory SystemMessage.fromJson(Map<String, dynamic> json) =>
-      _$SystemMessageFromJson(json);
+  factory SystemMessage.fromJson(Map<String, dynamic> json) => _$SystemMessageFromJson(json);
 
   /// System message content (could be text or translation key).
   final String text;
@@ -68,6 +68,7 @@ abstract class SystemMessage extends Message {
   @override
   Message copyWith({
     User? author,
+    User? receiver,
     int? createdAt,
     String? id,
     Map<String, dynamic>? metadata,
@@ -106,6 +107,7 @@ class _SystemMessage extends SystemMessage {
   @override
   Message copyWith({
     User? author,
+    User? receiver,
     dynamic createdAt = _Unset,
     String? id,
     dynamic metadata = _Unset,
@@ -121,16 +123,11 @@ class _SystemMessage extends SystemMessage {
         author: author ?? this.author,
         createdAt: createdAt == _Unset ? this.createdAt : createdAt as int?,
         id: id ?? this.id,
-        metadata: metadata == _Unset
-            ? this.metadata
-            : metadata as Map<String, dynamic>?,
+        metadata: metadata == _Unset ? this.metadata : metadata as Map<String, dynamic>?,
         remoteId: remoteId == _Unset ? this.remoteId : remoteId as String?,
-        repliedMessage: repliedMessage == _Unset
-            ? this.repliedMessage
-            : repliedMessage as Message?,
+        repliedMessage: repliedMessage == _Unset ? this.repliedMessage : repliedMessage as Message?,
         roomId: roomId == _Unset ? this.roomId : roomId as String?,
-        showStatus:
-            showStatus == _Unset ? this.showStatus : showStatus as bool?,
+        showStatus: showStatus == _Unset ? this.showStatus : showStatus as bool?,
         status: status == _Unset ? this.status : status as Status?,
         text: text ?? this.text,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,

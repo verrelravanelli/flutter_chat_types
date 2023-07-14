@@ -14,6 +14,7 @@ abstract class AudioMessage extends Message {
   /// Creates an audio message.
   const AudioMessage._({
     required super.author,
+    required super.receiver,
     super.createdAt,
     required this.duration,
     required super.id,
@@ -34,6 +35,7 @@ abstract class AudioMessage extends Message {
 
   const factory AudioMessage({
     required User author,
+    required User receiver,
     int? createdAt,
     required Duration duration,
     required String id,
@@ -53,12 +55,12 @@ abstract class AudioMessage extends Message {
   }) = _AudioMessage;
 
   /// Creates an audio message from a map (decoded JSON).
-  factory AudioMessage.fromJson(Map<String, dynamic> json) =>
-      _$AudioMessageFromJson(json);
+  factory AudioMessage.fromJson(Map<String, dynamic> json) => _$AudioMessageFromJson(json);
 
   /// Creates a full audio message from a partial one.
   factory AudioMessage.fromPartial({
     required User author,
+    required User receiver,
     int? createdAt,
     required String id,
     required PartialAudio partialAudio,
@@ -70,6 +72,7 @@ abstract class AudioMessage extends Message {
   }) =>
       _AudioMessage(
         author: author,
+        receiver: receiver,
         createdAt: createdAt,
         duration: partialAudio.duration,
         id: id,
@@ -130,6 +133,7 @@ abstract class AudioMessage extends Message {
   @override
   Message copyWith({
     User? author,
+    User? receiver,
     int? createdAt,
     Duration? duration,
     String? id,
@@ -156,6 +160,7 @@ abstract class AudioMessage extends Message {
 class _AudioMessage extends AudioMessage {
   const _AudioMessage({
     required super.author,
+    required super.receiver,
     super.createdAt,
     required super.duration,
     required super.id,
@@ -177,6 +182,7 @@ class _AudioMessage extends AudioMessage {
   @override
   Message copyWith({
     User? author,
+    User? receiver,
     dynamic createdAt = _Unset,
     Duration? duration,
     String? id,
@@ -195,27 +201,22 @@ class _AudioMessage extends AudioMessage {
   }) =>
       _AudioMessage(
         author: author ?? this.author,
+        receiver: receiver ?? this.receiver,
         createdAt: createdAt == _Unset ? this.createdAt : createdAt as int?,
         duration: duration ?? this.duration,
         id: id ?? this.id,
-        metadata: metadata == _Unset
-            ? this.metadata
-            : metadata as Map<String, dynamic>?,
+        metadata: metadata == _Unset ? this.metadata : metadata as Map<String, dynamic>?,
         mimeType: mimeType == _Unset ? this.mimeType : mimeType as String?,
         name: name ?? this.name,
         remoteId: remoteId == _Unset ? this.remoteId : remoteId as String?,
-        repliedMessage: repliedMessage == _Unset
-            ? this.repliedMessage
-            : repliedMessage as Message?,
+        repliedMessage: repliedMessage == _Unset ? this.repliedMessage : repliedMessage as Message?,
         roomId: roomId == _Unset ? this.roomId : roomId as String?,
-        showStatus:
-            showStatus == _Unset ? this.showStatus : showStatus as bool?,
+        showStatus: showStatus == _Unset ? this.showStatus : showStatus as bool?,
         size: size ?? this.size,
         status: status == _Unset ? this.status : status as Status?,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
         uri: uri ?? this.uri,
-        waveForm:
-            waveForm == _Unset ? this.waveForm : waveForm as List<double>?,
+        waveForm: waveForm == _Unset ? this.waveForm : waveForm as List<double>?,
       );
 }
 

@@ -8,6 +8,7 @@ part of 'file_message.dart';
 
 FileMessage _$FileMessageFromJson(Map<String, dynamic> json) => FileMessage(
       author: User.fromJson(json['author'] as Map<String, dynamic>),
+      receiver: User.fromJson(json['receiver'] as Map<String, dynamic>),
       createdAt: json['createdAt'] as int?,
       id: json['id'] as String,
       isLoading: json['isLoading'] as bool?,
@@ -15,9 +16,8 @@ FileMessage _$FileMessageFromJson(Map<String, dynamic> json) => FileMessage(
       mimeType: json['mimeType'] as String?,
       name: json['name'] as String,
       remoteId: json['remoteId'] as String?,
-      repliedMessage: json['repliedMessage'] == null
-          ? null
-          : Message.fromJson(json['repliedMessage'] as Map<String, dynamic>),
+      repliedMessage:
+          json['repliedMessage'] == null ? null : Message.fromJson(json['repliedMessage'] as Map<String, dynamic>),
       roomId: json['roomId'] as String?,
       showStatus: json['showStatus'] as bool?,
       size: json['size'] as num,

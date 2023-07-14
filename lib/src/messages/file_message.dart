@@ -14,6 +14,7 @@ abstract class FileMessage extends Message {
   /// Creates a file message.
   const FileMessage._({
     required super.author,
+    required super.receiver,
     super.createdAt,
     required super.id,
     this.isLoading,
@@ -33,6 +34,7 @@ abstract class FileMessage extends Message {
 
   const factory FileMessage({
     required User author,
+    required User receiver,
     int? createdAt,
     required String id,
     bool? isLoading,
@@ -51,12 +53,12 @@ abstract class FileMessage extends Message {
   }) = _FileMessage;
 
   /// Creates a file message from a map (decoded JSON).
-  factory FileMessage.fromJson(Map<String, dynamic> json) =>
-      _$FileMessageFromJson(json);
+  factory FileMessage.fromJson(Map<String, dynamic> json) => _$FileMessageFromJson(json);
 
   /// Creates a full file message from a partial one.
   factory FileMessage.fromPartial({
     required User author,
+    required User receiver,
     int? createdAt,
     required String id,
     bool? isLoading,
@@ -69,6 +71,7 @@ abstract class FileMessage extends Message {
   }) =>
       _FileMessage(
         author: author,
+        receiver: receiver,
         createdAt: createdAt,
         id: id,
         isLoading: isLoading,
@@ -124,6 +127,7 @@ abstract class FileMessage extends Message {
   @override
   Message copyWith({
     User? author,
+    User? receiver,
     int? createdAt,
     String? id,
     bool? isLoading,
@@ -149,6 +153,7 @@ abstract class FileMessage extends Message {
 class _FileMessage extends FileMessage {
   const _FileMessage({
     required super.author,
+    required super.receiver,
     super.createdAt,
     required super.id,
     super.isLoading,
@@ -169,6 +174,7 @@ class _FileMessage extends FileMessage {
   @override
   Message copyWith({
     User? author,
+    User? receiver,
     dynamic createdAt = _Unset,
     dynamic height = _Unset,
     String? id,
@@ -188,21 +194,17 @@ class _FileMessage extends FileMessage {
   }) =>
       _FileMessage(
         author: author ?? this.author,
+        receiver: receiver ?? this.receiver,
         createdAt: createdAt == _Unset ? this.createdAt : createdAt as int?,
         id: id ?? this.id,
         isLoading: isLoading == _Unset ? this.isLoading : isLoading as bool?,
-        metadata: metadata == _Unset
-            ? this.metadata
-            : metadata as Map<String, dynamic>?,
+        metadata: metadata == _Unset ? this.metadata : metadata as Map<String, dynamic>?,
         mimeType: mimeType == _Unset ? this.mimeType : mimeType as String?,
         name: name ?? this.name,
         remoteId: remoteId == _Unset ? this.remoteId : remoteId as String?,
-        repliedMessage: repliedMessage == _Unset
-            ? this.repliedMessage
-            : repliedMessage as Message?,
+        repliedMessage: repliedMessage == _Unset ? this.repliedMessage : repliedMessage as Message?,
         roomId: roomId == _Unset ? this.roomId : roomId as String?,
-        showStatus:
-            showStatus == _Unset ? this.showStatus : showStatus as bool?,
+        showStatus: showStatus == _Unset ? this.showStatus : showStatus as bool?,
         size: size ?? this.size,
         status: status == _Unset ? this.status : status as Status?,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,

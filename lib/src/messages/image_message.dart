@@ -14,6 +14,7 @@ abstract class ImageMessage extends Message {
   /// Creates an image message.
   const ImageMessage._({
     required super.author,
+    required super.receiver,
     super.createdAt,
     this.height,
     required super.id,
@@ -33,6 +34,7 @@ abstract class ImageMessage extends Message {
 
   const factory ImageMessage({
     required User author,
+    required User receiver,
     int? createdAt,
     double? height,
     required String id,
@@ -51,12 +53,12 @@ abstract class ImageMessage extends Message {
   }) = _ImageMessage;
 
   /// Creates an image message from a map (decoded JSON).
-  factory ImageMessage.fromJson(Map<String, dynamic> json) =>
-      _$ImageMessageFromJson(json);
+  factory ImageMessage.fromJson(Map<String, dynamic> json) => _$ImageMessageFromJson(json);
 
   /// Creates a full image message from a partial one.
   factory ImageMessage.fromPartial({
     required User author,
+    required User receiver,
     int? createdAt,
     required String id,
     required PartialImage partialImage,
@@ -68,6 +70,7 @@ abstract class ImageMessage extends Message {
   }) =>
       _ImageMessage(
         author: author,
+        receiver: receiver,
         createdAt: createdAt,
         height: partialImage.height,
         id: id,
@@ -123,6 +126,7 @@ abstract class ImageMessage extends Message {
   @override
   Message copyWith({
     User? author,
+    User? receiver,
     int? createdAt,
     double? height,
     String? id,
@@ -148,6 +152,7 @@ abstract class ImageMessage extends Message {
 class _ImageMessage extends ImageMessage {
   const _ImageMessage({
     required super.author,
+    required super.receiver,
     super.createdAt,
     super.height,
     required super.id,
@@ -168,6 +173,7 @@ class _ImageMessage extends ImageMessage {
   @override
   Message copyWith({
     User? author,
+    User? receiver,
     dynamic createdAt = _Unset,
     dynamic height = _Unset,
     String? id,
@@ -185,20 +191,16 @@ class _ImageMessage extends ImageMessage {
   }) =>
       _ImageMessage(
         author: author ?? this.author,
+        receiver: receiver ?? this.receiver,
         createdAt: createdAt == _Unset ? this.createdAt : createdAt as int?,
         height: height == _Unset ? this.height : height as double?,
         id: id ?? this.id,
-        metadata: metadata == _Unset
-            ? this.metadata
-            : metadata as Map<String, dynamic>?,
+        metadata: metadata == _Unset ? this.metadata : metadata as Map<String, dynamic>?,
         name: name ?? this.name,
         remoteId: remoteId == _Unset ? this.remoteId : remoteId as String?,
-        repliedMessage: repliedMessage == _Unset
-            ? this.repliedMessage
-            : repliedMessage as Message?,
+        repliedMessage: repliedMessage == _Unset ? this.repliedMessage : repliedMessage as Message?,
         roomId: roomId == _Unset ? this.roomId : roomId as String?,
-        showStatus:
-            showStatus == _Unset ? this.showStatus : showStatus as bool?,
+        showStatus: showStatus == _Unset ? this.showStatus : showStatus as bool?,
         size: size ?? this.size,
         status: status == _Unset ? this.status : status as Status?,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,

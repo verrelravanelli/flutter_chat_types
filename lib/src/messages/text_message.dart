@@ -15,6 +15,7 @@ abstract class TextMessage extends Message {
   /// Creates a text message.
   const TextMessage._({
     required super.author,
+    required super.receiver,
     super.createdAt,
     required super.id,
     super.metadata,
@@ -31,6 +32,7 @@ abstract class TextMessage extends Message {
 
   const factory TextMessage({
     required User author,
+    required User receiver,
     int? createdAt,
     required String id,
     Map<String, dynamic>? metadata,
@@ -46,12 +48,12 @@ abstract class TextMessage extends Message {
   }) = _TextMessage;
 
   /// Creates a text message from a map (decoded JSON).
-  factory TextMessage.fromJson(Map<String, dynamic> json) =>
-      _$TextMessageFromJson(json);
+  factory TextMessage.fromJson(Map<String, dynamic> json) => _$TextMessageFromJson(json);
 
   /// Creates a full text message from a partial one.
   factory TextMessage.fromPartial({
     required User author,
+    required User receiver,
     int? createdAt,
     required String id,
     required PartialText partialText,
@@ -63,6 +65,7 @@ abstract class TextMessage extends Message {
   }) =>
       _TextMessage(
         author: author,
+        receiver: receiver,
         createdAt: createdAt,
         id: id,
         metadata: partialText.metadata,
@@ -103,6 +106,7 @@ abstract class TextMessage extends Message {
   @override
   Message copyWith({
     User? author,
+    User? receiver,
     int? createdAt,
     String? id,
     Map<String, dynamic>? metadata,
@@ -125,6 +129,7 @@ abstract class TextMessage extends Message {
 class _TextMessage extends TextMessage {
   const _TextMessage({
     required super.author,
+    required super.receiver,
     super.createdAt,
     required super.id,
     super.metadata,
@@ -142,6 +147,7 @@ class _TextMessage extends TextMessage {
   @override
   Message copyWith({
     User? author,
+    User? receiver,
     dynamic createdAt = _Unset,
     String? id,
     dynamic metadata = _Unset,
@@ -156,21 +162,15 @@ class _TextMessage extends TextMessage {
   }) =>
       _TextMessage(
         author: author ?? this.author,
+        receiver: receiver ?? this.receiver,
         createdAt: createdAt == _Unset ? this.createdAt : createdAt as int?,
         id: id ?? this.id,
-        metadata: metadata == _Unset
-            ? this.metadata
-            : metadata as Map<String, dynamic>?,
-        previewData: previewData == _Unset
-            ? this.previewData
-            : previewData as PreviewData?,
+        metadata: metadata == _Unset ? this.metadata : metadata as Map<String, dynamic>?,
+        previewData: previewData == _Unset ? this.previewData : previewData as PreviewData?,
         remoteId: remoteId == _Unset ? this.remoteId : remoteId as String?,
-        repliedMessage: repliedMessage == _Unset
-            ? this.repliedMessage
-            : repliedMessage as Message?,
+        repliedMessage: repliedMessage == _Unset ? this.repliedMessage : repliedMessage as Message?,
         roomId: roomId == _Unset ? this.roomId : roomId as String?,
-        showStatus:
-            showStatus == _Unset ? this.showStatus : showStatus as bool?,
+        showStatus: showStatus == _Unset ? this.showStatus : showStatus as bool?,
         status: status == _Unset ? this.status : status as Status?,
         text: text ?? this.text,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,

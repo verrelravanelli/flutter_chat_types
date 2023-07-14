@@ -15,6 +15,7 @@ abstract class CustomMessage extends Message {
   /// Creates a custom message.
   const CustomMessage._({
     required super.author,
+    required super.receiver,
     super.createdAt,
     required super.id,
     super.metadata,
@@ -29,6 +30,7 @@ abstract class CustomMessage extends Message {
 
   const factory CustomMessage({
     required User author,
+    required User receiver,
     int? createdAt,
     required String id,
     Map<String, dynamic>? metadata,
@@ -42,12 +44,12 @@ abstract class CustomMessage extends Message {
   }) = _CustomMessage;
 
   /// Creates a custom message from a map (decoded JSON).
-  factory CustomMessage.fromJson(Map<String, dynamic> json) =>
-      _$CustomMessageFromJson(json);
+  factory CustomMessage.fromJson(Map<String, dynamic> json) => _$CustomMessageFromJson(json);
 
   /// Creates a full custom message from a partial one.
   factory CustomMessage.fromPartial({
     required User author,
+    required User receiver,
     int? createdAt,
     required String id,
     required PartialCustom partialCustom,
@@ -59,6 +61,7 @@ abstract class CustomMessage extends Message {
   }) =>
       _CustomMessage(
         author: author,
+        receiver: receiver,
         createdAt: createdAt,
         id: id,
         metadata: partialCustom.metadata,
@@ -89,6 +92,7 @@ abstract class CustomMessage extends Message {
   @override
   Message copyWith({
     User? author,
+    User? receiver,
     int? createdAt,
     String? id,
     Map<String, dynamic>? metadata,
@@ -110,6 +114,7 @@ abstract class CustomMessage extends Message {
 class _CustomMessage extends CustomMessage {
   const _CustomMessage({
     required super.author,
+    required super.receiver,
     super.createdAt,
     required super.id,
     super.metadata,
@@ -125,6 +130,7 @@ class _CustomMessage extends CustomMessage {
   @override
   Message copyWith({
     User? author,
+    User? receiver,
     dynamic createdAt = _Unset,
     String? id,
     dynamic metadata = _Unset,
@@ -137,18 +143,14 @@ class _CustomMessage extends CustomMessage {
   }) =>
       _CustomMessage(
         author: author ?? this.author,
+        receiver: receiver ?? this.receiver,
         createdAt: createdAt == _Unset ? this.createdAt : createdAt as int?,
         id: id ?? this.id,
-        metadata: metadata == _Unset
-            ? this.metadata
-            : metadata as Map<String, dynamic>?,
+        metadata: metadata == _Unset ? this.metadata : metadata as Map<String, dynamic>?,
         remoteId: remoteId == _Unset ? this.remoteId : remoteId as String?,
-        repliedMessage: repliedMessage == _Unset
-            ? this.repliedMessage
-            : repliedMessage as Message?,
+        repliedMessage: repliedMessage == _Unset ? this.repliedMessage : repliedMessage as Message?,
         roomId: roomId == _Unset ? this.roomId : roomId as String?,
-        showStatus:
-            showStatus == _Unset ? this.showStatus : showStatus as bool?,
+        showStatus: showStatus == _Unset ? this.showStatus : showStatus as bool?,
         status: status == _Unset ? this.status : status as Status?,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
       );

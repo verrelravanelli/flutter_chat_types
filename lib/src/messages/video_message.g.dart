@@ -8,15 +8,15 @@ part of 'video_message.dart';
 
 VideoMessage _$VideoMessageFromJson(Map<String, dynamic> json) => VideoMessage(
       author: User.fromJson(json['author'] as Map<String, dynamic>),
+      receiver: User.fromJson(json['receiver'] as Map<String, dynamic>),
       createdAt: json['createdAt'] as int?,
       height: (json['height'] as num?)?.toDouble(),
       id: json['id'] as String,
       metadata: json['metadata'] as Map<String, dynamic>?,
       name: json['name'] as String,
       remoteId: json['remoteId'] as String?,
-      repliedMessage: json['repliedMessage'] == null
-          ? null
-          : Message.fromJson(json['repliedMessage'] as Map<String, dynamic>),
+      repliedMessage:
+          json['repliedMessage'] == null ? null : Message.fromJson(json['repliedMessage'] as Map<String, dynamic>),
       roomId: json['roomId'] as String?,
       showStatus: json['showStatus'] as bool?,
       size: json['size'] as num,
